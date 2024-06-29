@@ -5,7 +5,7 @@ from aiogram.filters import Command
 from aiogram.types import BotCommand, Message
 from dotenv import load_dotenv
 
-from founctions import start, info, stop, vacancy, helps, start_menu, register_tex, register_nik, register_nomer, register_hudud, register_masul, register_mur_time, register_work_time, register_maosh, register_qosh,register_finish
+from founctions import start, info, stop, vacancy, helps, start_menu, register_tex, register_ish, register_aloqa, register_maosh, register_idora, register_telegram, register_murojat, register_finish, register_masul, register_hudud
 from states import SignUp
 
 load_dotenv()
@@ -29,15 +29,16 @@ async def main(dp) -> None:
     )
     dp.startup.register(start)
     dp.message.register(vacancy, Command('vacancy'))
+    dp.message.register(register_idora, SignUp.Idora)
     dp.message.register(register_tex, SignUp.Texnologiya)
-    dp.message.register(register_nik, SignUp.Telegram)
-    dp.message.register(register_nomer, SignUp.Aloqa)
+    dp.message.register(register_telegram, SignUp.Telegram)
+    dp.message.register(register_aloqa, SignUp.Aloqa)
     dp.message.register(register_hudud, SignUp.Hudud)
     dp.message.register(register_masul, SignUp.Masul)
-    dp.message.register(register_mur_time, SignUp.Murojaat_vaqti)
-    dp.message.register(register_work_time, SignUp.Ish_vaqti)
+    dp.message.register(register_murojat, SignUp.Murojaat_vaqti)
+    dp.message.register(register_ish, SignUp.Ish_vaqti)
     dp.message.register(register_maosh, SignUp.Maosh)
-    dp.message.register(register_qosh, SignUp.Qoshimcha)
+    dp.message.register(register_finish, SignUp.Qoshimcha)
     dp.message.register(info, Command('info'))
     dp.message.register(start_menu, Command('start'))
     dp.message.register(helps, Command('help'))

@@ -37,55 +37,55 @@ async def vacancy(message: Message, bot: Bot, state: FSMContext):
     await state.set_state(SignUp.Idora)
 
 
-async def register_tex(message: Message, bot: Bot, state: FSMContext):
+async def register_idora(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Idora=message.text)
     await message.answer("Texnalogiyalarni kiriting: ")
     await state.set_state(SignUp.Texnologiya)
 
 
-async def register_nik(message: Message, bot: Bot, state: FSMContext):
+async def register_tex(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Texnologiya=message.text)
     await message.answer("Telegram nikingizni kiriting: ")
     await state.set_state(SignUp.Telegram)
 
 
-async def register_nomer(message: Message, bot: Bot, state: FSMContext):
+async def register_telegram(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Telegram=message.text)
     await message.answer("Telefon nomeringizni kiriting: ")
     await state.set_state(SignUp.Aloqa)
 
 
-async def register_hudud(message: Message, bot: Bot, state: FSMContext):
+async def register_aloqa(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Aloqa=message.text)
     await message.answer("Hududni  kiriting: ")
     await state.set_state(SignUp.Hudud)
 
 
-async def register_masul(message: Message, bot: Bot, state: FSMContext):
+async def register_hudud(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Hudud=message.text)
     await message.answer("Mas'ulni kiriting: ")
     await state.set_state(SignUp.Masul)
 
 
-async def register_mur_time(message: Message, bot: Bot, state: FSMContext):
+async def register_masul(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Masul=message.text)
-    await message.answer("Murojaat vaqtini kiriting: ex: 9:00 - 18:00")
+    await message.answer("Murojaat vaqtini kiriting:")
     await state.set_state(SignUp.Murojaat_vaqti)
 
 
-async def register_work_time(message: Message, bot: Bot, state: FSMContext):
+async def register_murojat(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Murojaat_vaqti=message.text)
-    await message.answer("ISh vaqtini kiriting: ")
+    await message.answer("Ish vaqtini kiriting: ")
     await state.set_state(SignUp.Ish_vaqti)
 
 
-async def register_maosh(message: Message, bot: Bot, state: FSMContext):
+async def register_ish(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Ish_vaqti=message.text)
     await message.answer("Maoshni kiriting: ")
     await state.set_state(SignUp.Maosh)
 
 
-async def register_qosh(message: Message, bot: Bot, state: FSMContext):
+async def register_maosh(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Maosh=message.text)
     await message.answer("Qo'shimcha kiriting: ")
     await state.set_state(SignUp.Qoshimcha)
@@ -94,21 +94,24 @@ async def register_qosh(message: Message, bot: Bot, state: FSMContext):
 async def register_finish(message: Message, bot: Bot, state: FSMContext):
     await state.update_data(Qoshimcha=message.text)
     data = await state.get_data()
-    txt = f'''Ma'lumotlaringiz:\n \n
-    🏢Idora: {data.get("Idora ")}
-    📚Texnologiya: {data.get("Texnologiya")}
-     🇺🇿 Telegram: {data.get("Telegram")}
-    📞 Aloqa: {data.get("Aloqa")}
-    🌐 Hudud: {data.get("Hudud")}
-    ✍️ Mas'ul: {data.get("Masul")}
-    🕰 Murojaat vaqt: {data.get("Murojaat_vaqti")}
-    🕰 Ish vaqti: {data.get("Ish_vaqti")}
-    💰 Maosh: {data.get("Maosh")}
-    ‼️ Qo`shimcha: {data.get("Qoshimcha")}
-    '''
+    txt = f'''Siznign e'loningiz:\n \n
+🏢Idora: {data.get("Idora ")}
+📚Texnologiya: {data.get("Texnologiya")}
+🇺🇿 Telegram: {data.get("Telegram")}
+📞 Aloqa: {data.get("Aloqa")}
+🌐 Hudud: {data.get("Hudud")}
+✍️ Mas'ul: {data.get("Masul")}
+🕰 Murojaat vaqt: {data.get("Murojaat_vaqti")}
+🕰 Ish vaqti: {data.get("Ish_vaqti")}
+💰 Maosh: {data.get("Maosh")}
+‼️ Qo`shimcha: {data.get("Qoshimcha")}
+'''
+    await state.clear()
     await message.answer(text=txt, parse_mode="html")
     await message.answer("Siznig E'loningiz Admin Tomonidan Tekshirilib Tez Orada Kanalda Chop etiladi")
-    await bot.send_message(chat_id="751843547", text=txt)
+    await bot.send_message(chat_id="1932693641", text=txt)
+    await state.clear()
+
 
 
 async def start_menu(message: Message, bot: Bot, state: FSMContext):
